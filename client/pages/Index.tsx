@@ -1,62 +1,75 @@
-import { DemoResponse } from "@shared/api";
-import { useEffect, useState } from "react";
+import AppLayout from "@/components/layout/AppLayout";
+import VideoCard, { type Video } from "@/components/VideoCard";
+
+const videos: Video[] = [
+  {
+    id: "1",
+    title: "Mastering Glassmorphism UI in React + Tailwind",
+    channel: "DesignLab",
+    views: "1.2M",
+    timestamp: "2 days ago",
+    duration: "12:34",
+    thumbnail: "/placeholder.svg",
+  },
+  {
+    id: "2",
+    title: "Cinematic Drone Footage in 4K - Mountains at Dawn",
+    channel: "AeroVision",
+    views: "854K",
+    timestamp: "1 week ago",
+    duration: "08:21",
+    thumbnail: "/placeholder.svg",
+  },
+  {
+    id: "3",
+    title: "Build a Modern 3D Landing Page with CSS only",
+    channel: "CodeCanvas",
+    views: "412K",
+    timestamp: "4 hours ago",
+    duration: "16:05",
+    thumbnail: "/placeholder.svg",
+  },
+  {
+    id: "4",
+    title: "Top 10 Camera Hacks for Solo Creators",
+    channel: "FrameForge",
+    views: "2.1M",
+    timestamp: "3 weeks ago",
+    duration: "10:59",
+    thumbnail: "/placeholder.svg",
+  },
+  {
+    id: "5",
+    title: "Red & Black UI Theme Design Walkthrough",
+    channel: "UI Doctor",
+    views: "298K",
+    timestamp: "5 days ago",
+    duration: "14:12",
+    thumbnail: "/placeholder.svg",
+  },
+  {
+    id: "6",
+    title: "Slow Jazz Beats to Study & Code",
+    channel: "LoFi Nexus",
+    views: "3.8M",
+    timestamp: "2 months ago",
+    duration: "1:02:33",
+    thumbnail: "/placeholder.svg",
+  },
+];
 
 export default function Index() {
-  const [exampleFromServer, setExampleFromServer] = useState("");
-  // Fetch users on component mount
-  useEffect(() => {
-    fetchDemo();
-  }, []);
-
-  // Example of how to fetch data from the server (if needed)
-  const fetchDemo = async () => {
-    try {
-      const response = await fetch("/api/demo");
-      const data = (await response.json()) as DemoResponse;
-      setExampleFromServer(data.message);
-    } catch (error) {
-      console.error("Error fetching hello:", error);
-    }
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
-      <div className="text-center">
-        {/* TODO: FUSION_GENERATION_APP_PLACEHOLDER replace everything here with the actual app! */}
-        <h1 className="text-2xl font-semibold text-slate-800 flex items-center justify-center gap-3">
-          <svg
-            className="animate-spin h-8 w-8 text-slate-400"
-            viewBox="0 0 50 50"
-          >
-            <circle
-              className="opacity-30"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-            />
-            <circle
-              className="text-slate-600"
-              cx="25"
-              cy="25"
-              r="20"
-              stroke="currentColor"
-              strokeWidth="5"
-              fill="none"
-              strokeDasharray="100"
-              strokeDashoffset="75"
-            />
-          </svg>
-          Generating your app...
-        </h1>
-        <p className="mt-4 text-slate-600 max-w-md">
-          Watch the chat on the left for updates that might need your attention
-          to finish generating
-        </p>
-        <p className="mt-4 hidden max-w-md">{exampleFromServer}</p>
+    <AppLayout>
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-xl font-bold text-white/90">Trending</h1>
+        <div className="text-xs text-white/60">Admin-only uploads · Public viewing</div>
       </div>
-    </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        {videos.concat(videos).map((v, i) => (
+          <VideoCard key={`${v.id}-${i}`} video={{ ...v, id: `${v.id}-${i}` }} />
+        ))}
+      </div>
+    </AppLayout>
   );
 }
