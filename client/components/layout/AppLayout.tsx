@@ -1,23 +1,14 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import {
-  Search,
-  Home,
-  Compass,
-  PlaySquare,
-  Library,
-  Upload,
-  User,
-} from "lucide-react";
+import { Search, Home, Compass, PlaySquare, Library, Upload, User, LogOut } from "lucide-react";
 import { ReactNode, useState } from "react";
+import { useAuth } from "@/state/auth";
 
 function Brand() {
   return (
     <Link to="/" className="flex items-center gap-2 group">
       <div className="relative h-8 w-8 rounded-md bg-gradient-to-br from-red-500 via-red-600 to-red-700 shadow-[0_0_20px_rgba(239,68,68,0.6)]" />
-      <span className="text-lg font-extrabold tracking-tight text-white group-hover:text-red-400 transition-colors">
-        GlassTube
-      </span>
+      <span className="text-lg font-extrabold tracking-tight text-white group-hover:text-red-400 transition-colors">GlassTube</span>
     </Link>
   );
 }
@@ -62,17 +53,7 @@ function Topbar() {
 }
 
 function Sidebar() {
-  const NavItem = ({
-    to,
-    icon: Icon,
-    label,
-    disabled,
-  }: {
-    to: string;
-    icon: any;
-    label: string;
-    disabled?: boolean;
-  }) => (
+  const NavItem = ({ to, icon: Icon, label, disabled }: { to: string; icon: any; label: string; disabled?: boolean }) => (
     <Link
       to={to}
       className={cn(
@@ -81,11 +62,7 @@ function Sidebar() {
     >
       <Icon className="h-4 w-4 text-red-400 group-hover:scale-105 transition-transform" />
       <span>{label}</span>
-      {disabled ? (
-        <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-white/60">
-          soon
-        </span>
-      ) : null}
+      {disabled ? <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-white/60">soon</span> : null}
     </Link>
   );
 
@@ -94,12 +71,7 @@ function Sidebar() {
       <nav className="flex flex-col gap-1">
         <NavItem to="/" icon={Home} label="Home" />
         <NavItem to="/explore" icon={Compass} label="Explore" disabled />
-        <NavItem
-          to="/subscriptions"
-          icon={PlaySquare}
-          label="Subscriptions"
-          disabled
-        />
+        <NavItem to="/subscriptions" icon={PlaySquare} label="Subscriptions" disabled />
         <NavItem to="/library" icon={Library} label="Library" disabled />
       </nav>
     </aside>
