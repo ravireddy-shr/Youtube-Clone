@@ -32,7 +32,7 @@ export default function VideoCard({ video }: { video: Video }) {
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.04)_40%,rgba(255,255,255,0.02)_60%,transparent_100%)] opacity-70 mix-blend-overlay" />
         <img
-          src={video.thumbnail ?? "/placeholder.svg"}
+          src={video.thumbnail ?? "placeholder.svg"}
           alt={video.title}
           className="h-full w-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500"
           loading="lazy"
