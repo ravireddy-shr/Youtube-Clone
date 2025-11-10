@@ -15,7 +15,7 @@ export default function Watch() {
               controls
               className="h-full w-full"
               src={src}
-              poster="/placeholder.svg"
+              poster="placeholder.svg"
             />
           </div>
           <h1 className="mt-4 text-xl font-bold text-white">
