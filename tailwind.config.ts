@@ -85,6 +85,14 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      boxShadow: {
+        glow: "0 0 25px rgba(239,68,68,0.45)",
+        "inner-glow": "inset 0 1px 0 rgba(255,255,255,0.06)",
+      },
+      backgroundImage: {
+        "glass-light":
+          "linear-gradient(120deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 35%, rgba(255,255,255,0.02) 60%, transparent 100%)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
