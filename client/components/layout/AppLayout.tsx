@@ -1,6 +1,15 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Search, Home, Compass, PlaySquare, Library, Upload, User, LogOut } from "lucide-react";
+import {
+  Search,
+  Home,
+  Compass,
+  PlaySquare,
+  Library,
+  Upload,
+  User,
+  LogOut,
+} from "lucide-react";
 import { ReactNode, useState } from "react";
 import { useAuth } from "@/state/auth";
 
@@ -8,7 +17,9 @@ function Brand() {
   return (
     <Link to="/" className="flex items-center gap-2 group">
       <div className="relative h-8 w-8 rounded-md bg-gradient-to-br from-red-500 via-red-600 to-red-700 shadow-[0_0_20px_rgba(239,68,68,0.6)]" />
-      <span className="text-lg font-extrabold tracking-tight text-white group-hover:text-red-400 transition-colors">GlassTube</span>
+      <span className="text-lg font-extrabold tracking-tight text-white group-hover:text-red-400 transition-colors">
+        GlassTube
+      </span>
     </Link>
   );
 }
@@ -59,7 +70,9 @@ function Topbar() {
 
           {user ? (
             <div className="flex items-center gap-2">
-              <span className="hidden sm:inline text-xs text-white/70">{user.email}</span>
+              <span className="hidden sm:inline text-xs text-white/70">
+                {user.email}
+              </span>
               <button
                 onClick={() => logout()}
                 className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3 py-2 text-sm text-white/80 hover:text-white"
@@ -102,7 +115,9 @@ function SignInModal({ onClose }: { onClose: () => void }) {
     <div className="fixed inset-0 z-[60] grid place-items-center bg-black/50">
       <div className="w-[90vw] max-w-sm rounded-2xl border border-white/10 bg-white/10 backdrop-blur-xl p-5 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
         <h2 className="text-lg font-bold">Sign in</h2>
-        <p className="text-xs text-white/70 mt-1">Use one of the demo accounts below.</p>
+        <p className="text-xs text-white/70 mt-1">
+          Use one of the demo accounts below.
+        </p>
         <ul className="text-xs text-white/70 mt-2 space-y-1">
           <li>Admin: admin@glassy.tube / admin123</li>
           <li>Viewer: viewer@glassy.tube / viewer123</li>
@@ -126,10 +141,17 @@ function SignInModal({ onClose }: { onClose: () => void }) {
           />
           {error ? <div className="text-xs text-red-400">{error}</div> : null}
           <div className="flex gap-2 justify-end pt-1">
-            <button type="button" onClick={onClose} className="rounded-full px-3 py-1.5 text-sm bg-white/5 border border-white/10">
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-full px-3 py-1.5 text-sm bg-white/5 border border-white/10"
+            >
               Cancel
             </button>
-            <button type="submit" className="rounded-full px-3 py-1.5 text-sm bg-gradient-to-br from-red-600 to-red-700 text-white">
+            <button
+              type="submit"
+              className="rounded-full px-3 py-1.5 text-sm bg-gradient-to-br from-red-600 to-red-700 text-white"
+            >
               Sign in
             </button>
           </div>
@@ -140,7 +162,17 @@ function SignInModal({ onClose }: { onClose: () => void }) {
 }
 
 function Sidebar() {
-  const NavItem = ({ to, icon: Icon, label, disabled }: { to: string; icon: any; label: string; disabled?: boolean }) => (
+  const NavItem = ({
+    to,
+    icon: Icon,
+    label,
+    disabled,
+  }: {
+    to: string;
+    icon: any;
+    label: string;
+    disabled?: boolean;
+  }) => (
     <Link
       to={to}
       className={cn(
@@ -149,7 +181,11 @@ function Sidebar() {
     >
       <Icon className="h-4 w-4 text-red-400 group-hover:scale-105 transition-transform" />
       <span>{label}</span>
-      {disabled ? <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-white/60">soon</span> : null}
+      {disabled ? (
+        <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-white/60">
+          soon
+        </span>
+      ) : null}
     </Link>
   );
 
@@ -158,7 +194,12 @@ function Sidebar() {
       <nav className="flex flex-col gap-1">
         <NavItem to="/" icon={Home} label="Home" />
         <NavItem to="/explore" icon={Compass} label="Explore" disabled />
-        <NavItem to="/subscriptions" icon={PlaySquare} label="Subscriptions" disabled />
+        <NavItem
+          to="/subscriptions"
+          icon={PlaySquare}
+          label="Subscriptions"
+          disabled
+        />
         <NavItem to="/library" icon={Library} label="Library" disabled />
       </nav>
     </aside>

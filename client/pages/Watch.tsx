@@ -15,7 +15,9 @@ export default function Watch() {
   const commentsKey = `comments:${id}`;
   const playlistKey = `playlist`;
 
-  const [liked, setLiked] = useState<boolean>(() => localStorage.getItem(likeKey) === "1");
+  const [liked, setLiked] = useState<boolean>(
+    () => localStorage.getItem(likeKey) === "1",
+  );
   const [comments, setComments] = useState<Comment[]>(() => {
     try {
       const raw = localStorage.getItem(commentsKey);
@@ -44,7 +46,9 @@ export default function Watch() {
   useEffect(() => {
     const raw = localStorage.getItem(playlistKey);
     const list = raw ? (JSON.parse(raw) as string[]) : [];
-    const next = Array.from(new Set(added ? [...list, id] : list.filter((x) => x !== id)));
+    const next = Array.from(
+      new Set(added ? [...list, id] : list.filter((x) => x !== id)),
+    );
     localStorage.setItem(playlistKey, JSON.stringify(next));
   }, [added, id, playlistKey]);
 
@@ -55,10 +59,19 @@ export default function Watch() {
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_360px] gap-6">
         <section>
           <div className="aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_10px_30px_rgba(0,0,0,0.35)]">
-            <video controls className="h-full w-full" src={src} poster="placeholder.svg" />
+            <video
+              controls
+              className="h-full w-full"
+              src={src}
+              poster="placeholder.svg"
+            />
           </div>
-          <h1 className="mt-4 text-xl font-bold text-white">Big Buck Bunny — Demo</h1>
-          <div className="mt-2 text-sm text-white/70">1,234,567 views • Uploaded recently</div>
+          <h1 className="mt-4 text-xl font-bold text-white">
+            Big Buck Bunny — Demo
+          </h1>
+          <div className="mt-2 text-sm text-white/70">
+            1,234,567 views • Uploaded recently
+          </div>
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <button
               onClick={() => canInteract && setLiked((v) => !v)}
@@ -70,7 +83,8 @@ export default function Watch() {
                   : "bg-white/5 border-white/10 text-white/60 cursor-not-allowed"
               }`}
             >
-              <span className="mr-2">👍</span> {liked ? "Liked" : canInteract ? "Like" : "Like (sign in)"}
+              <span className="mr-2">👍</span>{" "}
+              {liked ? "Liked" : canInteract ? "Like" : "Like (sign in)"}
             </button>
             <button
               onClick={() => canInteract && setAdded((v) => !v)}
@@ -82,7 +96,11 @@ export default function Watch() {
                   : "bg-white/5 border-white/10 text-white/60 cursor-not-allowed"
               }`}
             >
-              {added ? "In playlist" : canInteract ? "Add to playlist" : "Add to playlist (sign in)"}
+              {added
+                ? "In playlist"
+                : canInteract
+                  ? "Add to playlist"
+                  : "Add to playlist (sign in)"}
             </button>
           </div>
 
@@ -95,7 +113,12 @@ export default function Watch() {
                   const t = text.trim();
                   if (!t) return;
                   setComments((prev) => [
-                    { id: crypto.randomUUID(), by: user!.email, text: t, at: Date.now() },
+                    {
+                      id: crypto.randomUUID(),
+                      by: user!.email,
+                      text: t,
+                      at: Date.now(),
+                    },
                     ...prev,
                   ]);
                   setText("");
