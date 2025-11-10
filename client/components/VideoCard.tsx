@@ -30,9 +30,7 @@ export default function VideoCard({ video }: { video: Video }) {
             <div className="ml-0.5 h-0 w-0 border-y-[10px] border-y-transparent border-l-[16px] border-l-white" />
           </div>
         </div>
-        <div
-          className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.04)_40%,rgba(255,255,255,0.02)_60%,transparent_100%)] opacity-70 mix-blend-overlay"
-        />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.18)_0%,rgba(255,255,255,0.04)_40%,rgba(255,255,255,0.02)_60%,transparent_100%)] opacity-70 mix-blend-overlay" />
         <img
           src={video.thumbnail ?? "/placeholder.svg"}
           alt={video.title}
@@ -45,7 +43,9 @@ export default function VideoCard({ video }: { video: Video }) {
           {video.title}
         </h3>
         <div className="mt-2 text-xs text-white/60 flex gap-2">
-          <span className="hover:text-white/80 transition-colors">{video.channel}</span>
+          <span className="hover:text-white/80 transition-colors">
+            {video.channel}
+          </span>
           <span>•</span>
           <span>{video.views} views</span>
           <span>•</span>

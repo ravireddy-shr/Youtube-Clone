@@ -63,11 +63,16 @@ export default function Index() {
     <AppLayout>
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-xl font-bold text-white/90">Trending</h1>
-        <div className="text-xs text-white/60">Admin-only uploads · Public viewing</div>
+        <div className="text-xs text-white/60">
+          Admin-only uploads · Public viewing
+        </div>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         {videos.concat(videos).map((v, i) => (
-          <VideoCard key={`${v.id}-${i}`} video={{ ...v, id: `${v.id}-${i}` }} />
+          <VideoCard
+            key={`${v.id}-${i}`}
+            video={{ ...v, id: `${v.id}-${i}` }}
+          />
         ))}
       </div>
     </AppLayout>
