@@ -1,6 +1,5 @@
 import AppLayout from "@/components/layout/AppLayout";
 import { useParams } from "react-router-dom";
-import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 
 export default function Watch() {
   const { id } = useParams();
